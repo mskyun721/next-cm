@@ -1,0 +1,59 @@
+# =============================================================================
+# detekt 설정 — detekt 고유 규칙만 포함
+# ktlint 포맷팅 설정은 .editorconfig 에서 관리
+# =============================================================================
+
+complexity:
+  LongParameterList:
+    allowedFunctionParameters: 6
+    allowedConstructorParameters: 7
+    ignoreDefaultParameters: true
+    ignoreDataClasses: true
+
+naming:
+  FunctionNaming:
+    excludeClassPattern: '.*(Test|Tests|IT|IntegrationTests)$'
+  PackageNaming:
+    # Kotlin 스타일 가이드: 소문자만, 언더스코어 사용하지 않음
+    packagePattern: '[a-z]+(\.[a-z][a-z0-9]*)*'
+
+style:
+  MagicNumber:
+    # Enum 엔트리는 본질적으로 상수 리터럴을 포함하므로 무시 (priority, order 등)
+    ignoreEnums: true
+    ignoreAnnotated:
+      - 'Min'
+      - 'Max'
+      - 'Range'
+      - 'Size'
+      - 'DecimalMin'
+      - 'DecimalMax'
+  # detekt 고유 규칙 비활성화 → ktlint 규칙으로 단일화 (.editorconfig 설정)
+  MaxLineLength:
+    active: false
+  ModifierOrder:
+    active: false
+  NewLineAtEndOfFile:
+    active: false
+  WildcardImport:
+    active: false
+  ReturnCount:
+    excludeGuardClauses: true
+  ThrowsCount:
+    excludeGuardClauses: true
+  UnusedParameter:
+    allowedNames: 'ignored|expected|ignored.*'
+
+# ktlint 규칙 활성화/비활성화 — 값 설정은 .editorconfig 에서 관리
+ktlint:
+  ClassSignature:
+    # .editorconfig 와 동기화: 생성자 멀티라인 시 super type 강제 줄바꿈 비활성화
+    active: false
+  Filename:
+    active: false
+  NoWildcardImports:
+    # IntelliJ는 star import 임계값(5)을 사용하므로 비활성화
+    active: false
+  TrailingCommaOnCallSite:
+    # Kotlin style guide: call site는 개발자 재량 → 강제하지 않음
+    active: false

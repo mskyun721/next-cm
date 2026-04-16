@@ -1,0 +1,86 @@
+# =============================================================================
+# EditorConfig — IntelliJ "Kotlin style guide" 동기화
+# https://kotlinlang.org/docs/coding-conventions.html
+# =============================================================================
+root = true
+
+# -----------------------------------------------------------------------------
+# 공통
+# -----------------------------------------------------------------------------
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# -----------------------------------------------------------------------------
+# Kotlin — Kotlin coding conventions (= IntelliJ "Kotlin style guide")
+# -----------------------------------------------------------------------------
+[*.{kt,kts}]
+
+# IntelliJ: "Set from… → Kotlin style guide" 와 동일
+ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
+
+# ktlint code style — intellij_idea = IntelliJ 포매터와 호환
+ktlint_code_style = intellij_idea
+
+# --- 들여쓰기 ----------------------------------------------------------------
+indent_size = 4
+ij_continuation_indent_size = 4
+
+# --- 최대 줄 길이 -------------------------------------------------------------
+max_line_length = 120
+
+# --- Import 정렬 --------------------------------------------------------------
+# Kotlin style guide 순서: 모든 import → java → javax → kotlin → alias
+ij_kotlin_imports_layout = *, java.**, javax.**, kotlin.**, ^
+
+# --- Wildcard(Star) import ----------------------------------------------------
+# IntelliJ 기본값: 동일 패키지에서 N개 이상이면 star import 사용
+ij_kotlin_name_count_to_use_star_import = 5
+ij_kotlin_name_count_to_use_star_import_for_members = 3
+# IntelliJ 기본 star import 허용 패키지
+ij_kotlin_packages_to_use_import_on_demand = java.util.*, kotlinx.android.synthetic.**
+
+# --- Trailing comma -----------------------------------------------------------
+# Declaration site: 권장 (Kotlin style guide)
+ij_kotlin_allow_trailing_comma = true
+# Call site: 개발자 재량 (Kotlin style guide), IntelliJ 기본값 = false
+ij_kotlin_allow_trailing_comma_on_call_site = false
+
+# --- ktlint 규칙 활성화/비활성화 ------------------------------------------------
+# IntelliJ ktlint 플러그인용 (detekt.yml 의 ktlint 섹션과 동일하게 유지)
+# NoWildcardImports: IntelliJ는 star import 임계값(5)을 사용하므로 비활성화
+ktlint_standard_no-wildcard-imports = disabled
+# ClassSignature: 생성자가 멀티라인이면 super type도 강제 줄바꿈하는데,
+# 라인 길이 제한에 안 걸리면 한 줄로 유지하고 싶으므로 비활성화.
+# 생성자 포맷은 FunctionSignature, 라인 길이는 MaximumLineLength 로 커버.
+ktlint_standard_class-signature = disabled
+# Filename: Spring 등 프레임워크에서 파일명 규칙이 다를 수 있어 비활성화
+ktlint_standard_filename = disabled
+
+# -----------------------------------------------------------------------------
+# YAML
+# -----------------------------------------------------------------------------
+[*.{yml,yaml}]
+indent_size = 2
+
+# -----------------------------------------------------------------------------
+# JSON / XML
+# -----------------------------------------------------------------------------
+[*.{json,xml}]
+indent_size = 2
+
+# -----------------------------------------------------------------------------
+# Properties
+# -----------------------------------------------------------------------------
+[*.properties]
+charset = utf-8
+
+# -----------------------------------------------------------------------------
+# SQL — IntelliJ SQL 포매터가 DDL 컬럼 정의를 깨뜨리므로 자동 포맷 비활성화
+# -----------------------------------------------------------------------------
+[*.sql]
+ij_formatter_enabled = false

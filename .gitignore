@@ -1,0 +1,38 @@
+# =============================================
+# agent-platform: 별도 git repo이므로 완전 제외
+# WHY: agent-platform은 mskyun721/agent-platform 독립 repo.
+#      docs 산출물은 next-cm/docs/ 로 이동 완료.
+# =============================================
+agent-platform/
+
+# =============================================
+# next-cm: Kotlin / Gradle
+# =============================================
+
+# Gradle build outputs
+next-cm/.gradle/
+next-cm/build/
+next-cm/out/
+
+# IntelliJ IDEA
+**/.idea/
+**/*.iml
+**/*.iws
+**/*.ipr
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Secrets / credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.jks
+
+# jOOQ generated sources (gradlew jooqCodegen 로 재생성)
+next-cm/src/main/kotlin/**/jooq/generated/
