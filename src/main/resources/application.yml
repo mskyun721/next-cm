@@ -1,0 +1,46 @@
+server:
+  port: 18080
+
+spring:
+  application:
+    name: next-cm
+  messages:
+    basename: messages/message,validations/validation,enums/enum,errors/error
+    fallback-to-system-locale: false
+  web:
+    locale: ko_KR
+
+  datasource:
+    write:
+      hikari:
+        pool-name: write-hikari-pool
+        jdbc-url: jdbc:h2:mem:kotlinbase-write;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM 'classpath:db/schema.sql'
+        username: sa
+        password:
+        driver-class-name: org.h2.Driver
+        minimum-idle: 5
+        maximum-pool-size: 20
+    read:
+      hikari:
+        pool-name: read-hikari-pool
+        jdbc-url: jdbc:h2:mem:kotlinbase-read;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM 'classpath:db/schema.sql'
+        username: sa
+        password:
+        driver-class-name: org.h2.Driver
+        minimum-idle: 5
+        maximum-pool-size: 20
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  pattern:
+    level: "%5p [traceId:%X{traceId:-}]"
+  level:
+    com.ktcloud.kcp.cm: DEBUG
+    org.springframework: ERROR
+    org.springframework.web.reactive.function.client: DEBUG
+    org.springframework.transaction: DEBUG
